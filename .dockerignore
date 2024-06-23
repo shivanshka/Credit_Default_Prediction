@@ -1,0 +1,8 @@
+.vscode/
+.gitignore
+.git
+Give_Me_Some_Credit/artifact/
+logs/
+saved_models/
+# Temporary notebook
+Untitled.ipynb

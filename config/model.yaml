@@ -1,0 +1,39 @@
+grid_search:
+  class: GridSearchCV
+  module: sklearn.model_selection
+  params:
+    cv: 5
+    verbose: 2
+
+model_selection:
+  module_0:
+    class: LogisticRegression
+    module: sklearn.linear_model
+    params:
+      C: 10
+      random_state: 42
+    search_param_grid:
+      C:
+        - 10
+      random_state:
+        - 42
+      class_weight:
+        - balanced
+
+  module_1:
+    class: RandomForestClassifier
+    module: sklearn.ensemble
+    params:
+      n_estimators: 326
+      random_state: 42
+    search_param_grid:
+      n_estimators:
+        - 326
+      criterion:
+        - entropy
+      max_depth:
+        - 7
+      min_samples_split:
+        - 0.07125597174466526
+      random_state:
+        - 42

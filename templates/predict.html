@@ -1,0 +1,120 @@
+{% extends 'header.html' %}
+{% block head %}
+
+<title>Default Estimator</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+
+        <form action="/predict" method="post">
+            <legend>Defaulter Estimator Form</legend>
+            <div class="mb-3">
+                <label class="form-label">RevolvingUtilizationOfUnsecuredLines</label>
+                <input class="form-control" type="text" name="RevolvingUtilizationOfUnsecuredLines"
+                    placeholder="Enter a value of revolving utilization of unsecured lines" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">age</label>
+                <input class="form-control" type="text" name="age" placeholder="Enter a value of age" required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">NumberOfTime30_59DaysPastDueNotWorse</label>
+                <input class="form-control" type="text" name="NumberOfTime30_59DaysPastDueNotWorse"
+                    placeholder="Enter a value of number of times 30-59 days past due not worse" />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">DebtRatio</label>
+                <input class="form-control" type="text" name="DebtRatio" placeholder="Enter a value of debt ratio"
+                    required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">MonthlyIncome</label>
+                <input class="form-control" type="text" name="MonthlyIncome"
+                    placeholder="Enter a value of monthly income" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">NumberOfOpenCreditLinesAndLoans</label>
+                <input class="form-control" type="text" name="NumberOfOpenCreditLinesAndLoans"
+                    placeholder="Enter a value of number of open credit lines and loans" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">NumberOfTimes90DaysLate</label>
+                <input class="form-control" type="text" name="NumberOfTimes90DaysLate"
+                    placeholder="Enter a value of number of times 90 days late" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">NumberRealEstateLoansOrLines</label>
+                <input class="form-control" type="text" name="NumberRealEstateLoansOrLines"
+                    placeholder="Enter a value of number real estate loans or lines" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">NumberOfTime60_89DaysPastDueNotWorse</label>
+                <input class="form-control" type="text" name="NumberOfTime60_89DaysPastDueNotWorse"
+                    placeholder="Enter a value of number of time 60-89 days past due not worse" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">NumberOfDependents</label>
+                <input class="form-control" type="text" name="NumberOfDependents"
+                    placeholder="Enter a value of number of dependents" required />
+            </div>
+            <div class="mb-3">
+
+                <input class="btn btn-primary" type="submit" value="Predict Defaulter" required />
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                Credit Default Predictor
+            </div>
+            <div class="card-body">
+                {% if context['credit_data'] is not none %}
+                <table class="table table-striped">
+                    <caption>Credit Default Predictor </caption>
+                    <tr>
+                        <th>Input Feature</th>
+                        <th>Feature Value</th>
+
+                    </tr>
+                    {% for column,value in context['credit_data'].items() %}
+
+
+
+                    <tr>
+                        <td>{{column}}</td>
+                        <td>{{value[0]}}</td>
+                    </tr>
+
+                    {% endfor %}
+                    <tr>
+
+                        <td>SeriousDlqin2yrs </td>
+                        <td>
+                            {{ context['SeriousDlqin2yrs'] }}
+                        </td>
+                    </tr>
+                </table>
+
+                {% else %}
+
+                <h5 class="card-title">Submit Form</h5>
+                <p class="card-text">Kindly provide necessary information to estimate defaulting of a customer</p>
+
+
+
+                {% endif %}
+                Go to <a href="/" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
